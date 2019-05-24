@@ -1,31 +1,36 @@
-func QuickSort(items []int) {
+package main
+import "fmt"
+func quick(arr []int){
+	if len(arr) > 1{
+		pivot := len(arr) / 2
+		var left_side = []int{}
+		var right_side = []int{}
+		for i:= range arr {
+			val := arr[i]
+			if i != pivot {
+				if val <arr[pivot]{
+					left_side = append(left_side, val)
+				}else{
+					right_side = append(right_side, val)
+				}
+			}
+		}
+		quick(left_side)
+		quick(right_side)
 
-   if len(items) > 1 {
-      pivot_index := len(items) / 2
-      var smaller_items = []int{}
-      var larger_items = []int{}
+		var merge []int = append(append(append([]int{},left_side...),[]int{arr[pivot]}...),right_side...)
 
-      for i := range items {
-         val := items[i]
-         if i != pivot_index {
-            if val < items[pivot_index] {
-               smaller_items = append(smaller_items, val)
-            } else {
-               larger_items = append(larger_items, val)
-            }
-         }
-      }
+		for j:= 0; j<len(arr);j++ {
+			arr[j] = merge[j]
+		}
+		
+		fmt.Println(arr)
+	}
 
-      QuickSort(smaller_items)
-      QuickSort(larger_items)
+	fmt.Println(arr)
+}
 
-      var merged []int = append(append(append([]int{}, smaller_items...), []int{items[pivot_index]}...), larger_items...)
-      //merged := MergeLists(smaller_items, items[pivot_index], larger_items)
-
-      for j := 0; j < len(items); j++ {
-         items[j] = merged[j]
-      }
-
-   }
-
+func main(){
+	list := []int{12,50,11,40,65,03,11,25}
+	quick(list)
 }
