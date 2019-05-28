@@ -1,5 +1,9 @@
 package main
-import "fmt"
+import (
+	"fmt"
+	"os"
+	"strconv"
+)
 func quick(arr []int){
 	if len(arr) > 1{
 		pivot := len(arr) / 2
@@ -23,7 +27,7 @@ func quick(arr []int){
 		for j:= 0; j<len(arr);j++ {
 			arr[j] = merge[j]
 		}
-		
+
 		fmt.Println(arr)
 	}
 
@@ -31,6 +35,15 @@ func quick(arr []int){
 }
 
 func main(){
-	list := []int{12,50,11,40,65,03,11,25}
-	quick(list)
+	list := strconv.ParseInt(os.Args, 10, 64)
+	arg := os.Args[1:]
+	var argi = []int{}
+    for _, i := range arg {
+        j, err := strconv.Atoi(i)
+        if err != nil {
+            panic(err)
+        }
+        argi = append(argi, j)
+    }
+	quick(argi)
 }

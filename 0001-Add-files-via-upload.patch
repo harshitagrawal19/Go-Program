@@ -1,0 +1,38 @@
+From 358162ab6be392e3b19359453b8fe54341bc14aa Mon Sep 17 00:00:00 2001
+From: Harshi Agrawal <harshitagrawal19@gmail.com>
+Date: Fri, 24 May 2019 16:43:19 +0530
+Subject: [PATCH] Add files via upload
+
+---
+ insertion_sort.go | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
+ create mode 100644 insertion_sort.go
+
+diff --git a/insertion_sort.go b/insertion_sort.go
+new file mode 100644
+index 0000000..fa0ff7e
+--- /dev/null
++++ b/insertion_sort.go
+@@ -0,0 +1,18 @@
++package main
++import "fmt"
++func insertion(arr []int){
++	size := len(arr)
++	for i:=1; i<size; i++ {
++		for j:=i; j>0 && arr[j]< arr[j-1]; j--{
++			arr[j],arr[j-1] = arr[j-1],arr[j]
++		}
++	}
++	for i:=0;i<size;i++ {
++		fmt.Print(arr[i]," ")
++	}
++}
++
++func main(){
++	list := []int{15,40,16,50,20,41,6}
++	insertion(list)
++}
+\ No newline at end of file
+-- 
+2.17.1
+
